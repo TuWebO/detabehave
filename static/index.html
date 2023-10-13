@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta name="description" content="Testing with Behave wiki searches" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://behave-1-h5912370.deta.app/"/>
+    <meta property="og:title" content="The title of your webpage">
+    <meta property="og:description" content="A short description of your webpage">
+    <meta property="og:url" content="https://www.example.com/your-web-page">
+    <meta property="og:image" content="https://www.example.com/path-to-image.jpg">
+
+    <title>Behave Wiki Search</title>
+</head>
+<body>
+  <div class="container">
+      <h1 class="text-center my-5">Behave Wiki Search</h1>
+      <div class="row justify-content-center">
+          <div class="col-12 col-md-6">
+              <button class="btn btn-primary btn-block" id="runButton">Run tests</button>
+              <button class="btn btn-info btn-block mt-2" id="helpButton">Help</button>
+              <button class="btn btn-secondary btn-block mt-2" id="clearButton">Clear Screen</button>
+          </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 px-4">
+              <pre id="outputBox" class="border rounded my-4 p-3" style="display: none; max-height: 400px; overflow:auto;"></pre>
+          </div>
+      </div>
+  </div>
+
+  <script>
+
+      function runCommand(endpoint) {
+          fetch(endpoint)
+          .then(response => response.text())
+          .then(data => {
+              var pre = document.getElementById("outputBox");
+              pre.innerHTML = data;
+              pre.style.display = "block";
+          });
+      }
+
+      document.getElementById("runButton").onclick = function() {
+          runCommand('/run-tests');
+      }
+
+      document.getElementById("helpButton").onclick = function() {
+          runCommand('/steps-catalog');
+      }
+
+      document.getElementById("clearButton").onclick = function() {
+          var pre = document.getElementById("outputBox");
+          pre.innerHTML = '';
+          pre.style.display = "none";
+      }
+  </script>
+</body>
+</html>

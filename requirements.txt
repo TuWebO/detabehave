@@ -1,0 +1,7 @@
+deta~=1.1.0
+fastapi~=0.92.0
+behave~=1.2.6
+uvicorn
+selenium~=4.9.1
+webdriver-manager
+behave-webdriver
